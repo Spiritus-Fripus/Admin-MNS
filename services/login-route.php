@@ -51,7 +51,5 @@ function adminConnected()
     $stmt = $db->prepare($sql);
     $stmt->bindValue(":user_mail", $_SESSION['user_mail']);
     $stmt->execute();
-    $recordset = $stmt->fetchAll();
-
-    return $recordset;
+    return $stmt->fetchAll();
 }
