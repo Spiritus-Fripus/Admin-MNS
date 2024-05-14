@@ -1,6 +1,7 @@
 <?php
 
 require '../admin/include/connect.php';
+require '../admin/include/verify.php';
 
 if (isset($_POST['user_name']) && ($_POST['user_name']) != "") {
     $sql = "INSERT INTO table_user (user_name, user_firstname, user_mail, user_phonenumber, user_birthday_date, user_gender, user_type_id) VALUES (:user_name, :user_firstname, :user_mail, :user_phonenumber, :user_birthday_date, :user_gender, :user_type_id)";
@@ -11,11 +12,11 @@ if (isset($_POST['user_name']) && ($_POST['user_name']) != "") {
         case "admin":
             $usertypeid = 1;
             break;
-        case "user":
-            $usertypeid = 3;
-            break;
         case "teacher":
             $usertypeid = 2;
+            break;
+        case "user":
+            $usertypeid = 3;
             break;
     }
 
