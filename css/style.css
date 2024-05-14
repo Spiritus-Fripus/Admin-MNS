@@ -1,5 +1,7 @@
 test {
     test {
-        another-test {}
+        test-merge {
+            again {}
+        }
     }
 }
