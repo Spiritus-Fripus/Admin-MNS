@@ -1,11 +1,15 @@
 <?php
-require 'include/connect.php';
 
-$sql = "SELECT * FROM table_user LIMIT 10";
-$stmt = $db->prepare($sql);
-$stmt->execute();
-$recordset = $stmt->fetchAll();
+require_once './include/connect.php';
+require_once '../services/login-route.php';
+
+session_start();
+var_dump($_SESSION);
+
+$recordset = adminConnected();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,11 +21,13 @@ $recordset = $stmt->fetchAll();
 
 <body>
     <div class="container">
-        <ul>name
-            <?php foreach ($recordset as $row) { ?>
-                <li><?= $row['user_name'] ?></li>
-            <?php } ?>
-        </ul>
+        <?php foreach ($recordset as $row) { ?>
+            <h1>Bienvenue votre page <?= $row['user_name'] ?>!</h1>
+            <ul>
+                <li> id : <?= $row['user_id'] ?></li>
+                <li> name : <?= $row['user_name'] ?></li>
+            </ul>
+        <?php } ?>
     </div>
     <div class="container"></div>
     <div class="container"></div>
