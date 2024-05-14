@@ -26,6 +26,9 @@ $recordset = adminConnected();
             <ul>
                 <li> id : <?= $row['user_id'] ?></li>
                 <li> name : <?= $row['user_name'] ?></li>
+                <li> firstname : <?= $row['user_firstname'] ?></li>
+                <li> mail : <?= $row['user_mail'] ?></li>
+                <li> birthday : <?= $row['user_birthday_date'] ?></li>
             </ul>
         <?php } ?>
     </div>
