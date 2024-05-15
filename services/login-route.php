@@ -14,7 +14,7 @@ function connectRoute()
 
         // Vérifie si des résultats ont été retournés
         if ($response) {
-            // vérifie  si existe dans la bdd et compare avec les mots de passes hashés avec password_hash('', PASSWORD_DEFAULT);
+            // vérifie si existe dans la bdd et compare avec les mots de passes hashés avec password_hash('', PASSWORD_DEFAULT);
             if (password_verify($_POST['password'], $response['user_password'])) {
                 switch ($response['user_type_id']) {
                     case 1:
