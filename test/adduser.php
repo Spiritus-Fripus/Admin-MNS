@@ -7,7 +7,7 @@ if (isset($_POST['user_name']) && ($_POST['user_name']) != "") {
     $sql = "INSERT INTO table_user (user_name, user_firstname, user_mail, user_phonenumber, user_birthday_date, user_gender, user_type_id) VALUES (:user_name, :user_firstname, :user_mail, :user_phonenumber, :user_birthday_date, :user_gender, :user_type_id)";
     $stmt = $db->prepare($sql);
 
-    //on regarde quel type de user doit être créé grâce au switch et à la valeur envoyée par le select du formulaire
+    //on regarde quel type d'user doit être créé grâce au switch et à la valeur envoyée par le select du formulaire
     switch ($_POST['user_type_id']) {
         case "admin":
             $usertypeid = 1;
