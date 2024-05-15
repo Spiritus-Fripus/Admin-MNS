@@ -3,7 +3,7 @@
 require_once './include/connect.php';
 require_once '../services/login-route.php';
 
-session_start();
+
 var_dump($_SESSION);
 
 $recordset = adminConnected();
@@ -16,6 +16,7 @@ $recordset = adminConnected();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ADMIN SIDE</title>
 </head>
 
