@@ -74,8 +74,11 @@ $recordset = userConnected();
         <main class="main-container">
             <?php foreach ($recordset as $row) { ?>
                 <div class="welcome">
-                    <h1>Bienvenue sur votre page <?= $row['user_name'] ?>!</h1>
+                    <h1>Bienvenue sur votre page utilisateur : <?= $row['user_name'] ?></h1>
                 </div>
+                <br>
+                <h2>Information de l'utilisateur:</h2>
+                <br>
                 <ul>
                     <li> id : <?= $row['user_id'] ?></li>
                     <li> name : <?= $row['user_name'] ?></li>
