@@ -2,6 +2,8 @@
 require_once 'admin/include/connect.php';
 require_once 'services/login-route.php';
 
+session_start();
+
 connectRoute();
 
 ?>

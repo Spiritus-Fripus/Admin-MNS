@@ -5,6 +5,7 @@ function connectRoute()
     include './admin/include/connect.php';
 
     if (isset($_POST['email']) && $_POST['password']) {
+        $type_user= 0;
 
         $sql = "SELECT user_password ,user_mail, user_type_id FROM table_user WHERE user_mail = :mail";
         $stmt = $db->prepare($sql);
@@ -14,7 +15,7 @@ function connectRoute()
 
         // Vérifie si des résultats ont été retournés
         if ($response) {
-            // vérifie si existe dans la bdd et compare avec les mots de passes hashés avec password_hash('', PASSWORD_DEFAULT);
+            // vérifie si existe dans la bdd et compare avec les mots de passes hashés avec password_hash('', PASSWORD_DEFAULT)
             if (password_verify($_POST['password'], $response['user_password'])) {
                 switch ($response['user_type_id']) {
                     case 1:
@@ -30,22 +31,18 @@ function connectRoute()
                         header('Location: /user/student/index.php');
                         break;
                 }
+                // debut de session et definition des variables de session
                 session_start();
                 $_SESSION['user_type'] = $type_user;
-                var_dump($_SESSION);
+                $_SESSION['user_mail'] = $_POST['email'];
             }
         }
     }
 }
 
-function adminConnected()
+function userConnected()
 {
     include '../admin/include/connect.php';
-
-    if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
-        header('Location: /login.php');
-        exit();
-    }
 
     $sql = "SELECT * FROM table_user WHERE user_mail = :user_mail";
     $stmt = $db->prepare($sql);

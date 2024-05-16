@@ -3,10 +3,10 @@
 require_once './include/connect.php';
 require_once '../services/login-route.php';
 
-
+session_start();
 var_dump($_SESSION);
 
-$recordset = adminConnected();
+$recordset = userConnected();
 
 ?>
 
