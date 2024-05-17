@@ -1,4 +1,4 @@
-* {
+body {
     margin: 0;
     padding: 0;
     font-family: "Ubuntu", sans-serif;
@@ -9,7 +9,7 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 260px 1fr 1fr 1fr;
+    grid-template-columns: 300px 1fr 1fr 1fr;
     grid-template-rows: 0.2fr 3fr;
     grid-template-areas:
         "sidebar header header header"
@@ -18,29 +18,29 @@
 }
 
 .header {
+    color: whitesmoke;
     grid-area: header;
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 40px 0 40px;
-    background: #76b852; /* fallback for old browsers */
+    background: #141e30; /* fallback for old browsers */
     background: -webkit-linear-gradient(
-        to left,
-        #8dc26f,
-        #76b852
+        to right,
+        #243b55,
+        #141e30
     ); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
-        to left,
-        #8dc26f,
-        #76b852
+        to right,
+        #243b55,
+        #141e30
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     .form-search {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
 
         #search-bar {
             border-radius: 20px;
@@ -51,6 +51,7 @@
         button {
             border: none;
             background: none;
+            color: whitesmoke;
         }
 
         button:hover {
@@ -60,19 +61,36 @@
 }
 
 #sidebar {
+    color: whitesmoke;
     grid-area: sidebar;
     height: 100%;
-    background: #76b852; /* fallback for old browsers */
+    background: #141e30; /* fallback for old browsers */
     background: -webkit-linear-gradient(
-        to top,
-        #8dc26f,
-        #76b852
+        to left,
+        #243b55,
+        #141e30
     ); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
-        to top,
-        #8dc26f,
-        #76b852
+        to left,
+        #243b55,
+        #141e30
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    li {
+        list-style: none;
+    }
+
+    .logo {
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img {
+        width: 100px;
+        height: 125px;
+    }
 }
 
 .main-container {

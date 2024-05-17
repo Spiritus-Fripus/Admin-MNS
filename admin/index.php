@@ -30,11 +30,6 @@ $recordset = userConnected();
 
         <!-- Header  -->
         <header class="header">
-            <div class="menu">
-                <span class="material-symbols-rounded">
-                    menu
-                </span>
-            </div>
             <div class="header-l">
                 <form action="" class="form-search">
                     <input id="search-bar" type="search" placeholder="Recherche">
@@ -58,8 +53,9 @@ $recordset = userConnected();
 
         <!-- Sidebar -->
         <aside id="sidebar">
-            <div class="title">
-                <h1>Admin-MNS</h1>
+            <div class="logo">
+                <img src="/img/carlos.png" alt="logo">
+                <h1>Admin MNS</h1>
             </div>
             <ul>
                 <li>Accueil</li>
@@ -74,11 +70,10 @@ $recordset = userConnected();
         <main class="main-container">
             <?php foreach ($recordset as $row) { ?>
                 <div class="welcome">
-                    <h1>Bienvenue sur votre page utilisateur : <?= $row['user_name'] ?></h1>
+                    <h1>Bonjour , <?= $row['user_name'] ?> </h1>
                 </div>
-                <br>
                 <h2>Information de l'utilisateur:</h2>
-                <br>
+                <hr>
                 <ul>
                     <li> id : <?= $row['user_id'] ?></li>
                     <li> name : <?= $row['user_name'] ?></li>
@@ -86,6 +81,7 @@ $recordset = userConnected();
                     <li> mail : <?= $row['user_mail'] ?></li>
                     <li> birthday : <?= $row['user_birthday_date'] ?></li>
                 </ul>
+                <hr>
             <?php } ?>
         </main>
         <!-- Main -->
