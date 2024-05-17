@@ -1,5 +1,7 @@
 <?php
 
+//code pour ajouter un user depuis le côté admin
+
 require '../admin/include/connect.php';
 require '../admin/include/verify.php';
 
