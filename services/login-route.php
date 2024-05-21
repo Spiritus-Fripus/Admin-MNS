@@ -4,11 +4,12 @@ function connectRoute()
 {
     include './admin/include/connect.php';
 
-    if (isset($_POST['user_mail']) && $_POST['password']) {
+    if (isset($_POST['email']) && $_POST['password']) {
+        $type_user = 0;
 
-        $sql = "SELECT user_password ,user_mail, user_type_id FROM table_user WHERE user_mail = :user_mail";
+        $sql = "SELECT user_password ,user_mail, user_type_id FROM table_user WHERE user_mail = :mail";
         $stmt = $db->prepare($sql);
-        $stmt->bindValue("user_mail", $_POST['user_mail']);
+        $stmt->bindValue("mail", $_POST['email']);
         $stmt->execute();
         $response = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -33,8 +34,7 @@ function connectRoute()
                 // debut de session et definition des variables de session
                 session_start();
                 $_SESSION['user_type'] = $type_user;
-                $_SESSION['user_mail'] = $_POST['user_mail'];
-                var_dump($_SESSION);
+                $_SESSION['user_mail'] = $_POST['email'];
             }
         }
     }
@@ -44,18 +44,9 @@ function userConnected()
 {
     include '../admin/include/connect.php';
 
-    if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
-        header('Location: /login.php');
-        exit();
-    }
-
-    $_SESSION['user_mail'] = $_POST['user_mail'];
     $sql = "SELECT * FROM table_user WHERE user_mail = :user_mail";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(":user_mail", $_SESSION['user_mail']);
     $stmt->execute();
-    $recordset = $stmt->fetchAll();
-
-    return $recordset;
-    header('Location: ../admin/index.php');
+    return $stmt->fetchAll();
 }
