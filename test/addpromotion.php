@@ -3,23 +3,30 @@
 require '../admin/include/connect.php';
 require '../admin/include/verify.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+
+//AJOUT PROMOTION 
+$sql = "SELECT * FROM table_formation";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$recordset = $stmt->fetchAll();
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['formation_id'])) {
     try {
-        $sql = 'INSERT INTO table_formation (formation_type_id, formation_name, formation_duration, formation_date_start, formation_date_end, formation_max_student, formation_qualification) VALUES (:formation_type_id, :formation_name, :formation_duration, :formation_date_start, :formation_date_end, :formation_max_student, :formation_qualification)';
+        $sql = 'INSERT INTO table_promotion (promotion_name, promotion_year, formation_id) VALUES (:promotion_name, :promotion_year, :formation_id)';
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':formation_type_id', $_POST['formation_type_id']);
-        $stmt->bindValue(':formation_name', $_POST['formation_name']);
-        $stmt->bindValue(':formation_duration', $_POST['formation_duration']);
-        $stmt->bindValue(':formation_date_start', $_POST['formation_date_start']);
-        $stmt->bindValue(':formation_date_end', $_POST['formation_date_end']);
-        $stmt->bindValue(':formation_max_student', $_POST['formation_max_student']);
-        $stmt->bindValue(':formation_qualification', $_POST['formation_qualification']);
+        $stmt->bindValue(':promotion_name', $_POST['promotion_name']);
+        $stmt->bindValue(':promotion_year', $_POST['promotion_year']);
+        $stmt->bindValue(':formation_id', $_POST['formation_id']);
         $stmt->execute();
-        echo "Formation ajoutée avec succès !";
+        echo "Promotion ajoutée avec succès !";
     } catch (PDOException $e) {
         echo "Erreur lors de l'ajout de la formation : " . $e->getMessage();
     }
 }
+//AJOUT PROMOTION
 
 ?>
 
@@ -35,6 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <form action="addformation.php" method="post">
+            <select name="formation_id" id="formationid">
+                <?php foreach ($recordset as $row) { ?>
+                    <option value="<?= $row['formation_id'] ?>"><?= $row['formation_name'] ?></option>
+                <?php } ?>
+            </select>
+
             <label for="promotion_name">Nom de la promotion</label>
             <input type="text" name="promotion_name" />
 
