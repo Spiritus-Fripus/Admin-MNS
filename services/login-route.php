@@ -14,7 +14,7 @@ function connectRoute()
 
         // Vérifie si des résultats ont été retournés
         if ($response) {
-            // vérifie si existe dans la bdd et compare avec les mots de passes hashés avec password_hash('', PASSWORD_DEFAULT);
+            // vérifie si existe dans la bdd et compare avec les mots de passes hashés avec password_hash('', PASSWORD_DEFAULT)
             if (password_verify($_POST['password'], $response['user_password'])) {
                 switch ($response['user_type_id']) {
                     case 1:
@@ -30,6 +30,7 @@ function connectRoute()
                         header('Location: /user/student/index.php');
                         break;
                 }
+                // debut de session et definition des variables de session
                 session_start();
                 $_SESSION['user_type'] = $type_user;
                 $_SESSION['user_mail'] = $_POST['user_mail'];
@@ -39,7 +40,7 @@ function connectRoute()
     }
 }
 
-function adminConnected()
+function userConnected()
 {
     include '../admin/include/connect.php';
 

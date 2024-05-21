@@ -2,6 +2,8 @@
 require_once 'admin/include/connect.php';
 require_once 'services/login-route.php';
 
+session_start();
+
 connectRoute();
 
 ?>
@@ -12,7 +14,7 @@ connectRoute();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="css/indexstyle.css">
+    <link rel="stylesheet" href="css/login-style.css">
 </head>
 
 <body>
