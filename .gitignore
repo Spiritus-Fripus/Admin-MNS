@@ -1,0 +1,3 @@
+# ignore variable d'environement
+
+admin/include/varEnv.php
