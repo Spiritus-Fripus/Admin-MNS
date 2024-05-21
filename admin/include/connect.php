@@ -1,5 +1,4 @@
 <?php
-
 $config = require 'varEnv.php';
 
 try {
